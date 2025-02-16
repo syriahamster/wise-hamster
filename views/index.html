@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>햄스터 명언</title>
+
+    <!-- 모바일 디스플레이에 맞춰 자동으로 스케일 조정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- htmx 불러오기 (필요 시) -->
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+
+    <style>
+        /* 전체 페이지 기본 스타일 */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+
+        /* 가운데 정렬 + 반응형 컨테이너 */
+        .container {
+            position: relative;
+            /* PC에서는 최대 512px 너비, 모바일에서는 화면에 꽉 차도록 */
+            max-width: 512px;
+            width: 90%;
+            /* 작은 화면에서는 90%까지 늘어나도록 */
+            margin: 0 auto;
+            /* 세로 공간 확보(스마트폰에서 스크롤 여유) */
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        /* 햄스터 이미지: 가로 폭 100%로 해두면 화면 크기에 맞춰 자동 조정됨 */
+        .hamster-img {
+            width: 100%;
+            height: auto;
+            /* 세로 비율 유지 */
+            display: block;
+            cursor: pointer;
+            /* 클릭 가능 */
+        }
+
+        /* 말풍선 컨테이너 (DIV) 예시 */
+        .speech-bubble {
+            position: absolute;
+            /* 예: 이미지 아래쪽에 배치한다면 top 대신 bottom 사용 등 조정 가능 */
+            top: 150px;
+            left: 50px;
+            max-width: 300px;
+            /* PC에선 300px 너비, 모바일이 더 작아질 경우 자동 줄바꿈 */
+        }
+
+        /* 글자 크기 반응형 조절 (선택) */
+        /* 작은 화면일 때 글자 키우기, 이미지 크기 조절 등 */
+        @media (max-width: 600px) {
+            .speech-bubble {
+                left: 20px;
+                /* 화면이 좁으니 왼쪽 여백 줄이기 */
+                top: 80px;
+                /* 위치 조정 */
+                max-width: 260px;
+                /* 말풍선 폭도 살짝 축소 */
+            }
+
+            .speech-bubble div {
+                font-size: 1.1rem;
+                /* 조금 키운 글자 */
+            }
+        }
+
+        .footer {
+            margin-top: 20px;
+            /* 컨텐츠와 간격 */
+            text-align: center;
+            /* 가운데 정렬 */
+            font-size: 0.9rem;
+            /* 작게 표시 */
+            color: #555;
+            /* 약간 어두운 색상 */
+        }
+
+        .twitter-link {
+            text-decoration: none;
+            /* 밑줄 제거 */
+            color: #1DA1F2;
+            /* 트위터 블루 */
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .twitter-link:hover {
+            color: #0d8de3;
+            /* 호버 시 조금 더 진한 파란색 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 햄스터 이미지: 클릭 시 /request 요청 (htmx 사용 예시) -->
+        <img src="/ddabong_hamster.png" alt="햄스터" class="hamster-img" hx-get="/request" hx-trigger="click"
+            hx-target="#speech-bubble" hx-swap="innerHTML" />
+
+        <!-- 말풍선을 표시할 영역 -->
+        <div id="speech-bubble" class="speech-bubble"></div>
+    </div>
+    <!-- 트위터 링크 -->
+    <div class="footer">
+        <a href="https://x.com/HamsterSyria" target="_blank" class="twitter-link">
+            @햄스터아저씨
+        </a>
+    </div>
+</body>
+
+</html>
