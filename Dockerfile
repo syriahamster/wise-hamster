@@ -1,5 +1,5 @@
 # nodejs dockerfile
-FROM node:17.0.0
+FROM node:23-alpine3.21
 
 RUN mkdir /app
 WORKDIR /app
