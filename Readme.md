@@ -7,4 +7,4 @@
 
 ### 도커로 실행
 - docker build -t wise-hamster:latest .
-- docker run -p 8002:8002 --name wise-hamster --restart always  wise-hamster:latest
+- docker run -d -p 8002:8002 --name wise-hamster --restart always wise-hamster:latest
